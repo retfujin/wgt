@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "struts-2.1.7.dtd">
+
+<struts>
+    <constant name="struts.convention.package.locators" value="actions" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+	<constant name="struts.convention.result.path" value="/jsp" /> 
+	<constant name="struts.convention.relative.result.types" value="dispatcher,freemarker"/> 
+	
+	<constant name="struts.ui.theme" value="simple"/>
+	
+	<package name="struts" extends="struts-default">
+		<interceptors>
+			 <interceptor name="authority" class="com.wgt.util.PrivilegeFilter"/>
+			  
+			<interceptor-stack name="ssiDefaultStack">
+	           	<interceptor-ref name="fileUpload"/>
+	           	<interceptor-ref name="modelDriven" />
+	           	<interceptor-ref name="conversionError"/>	
+			</interceptor-stack>
+			<interceptor-stack name="myDefaultStack">
+				<!-- <interceptor-ref name="authority"/> -->	
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="ssiDefaultStack"/>
+		
+		
+		<global-results>
+			<result name="relogin">/logout.jsp</result>
+			<result name="authFunctionError">/authFunctionError.jsp</result>
+		</global-results>
+		
+	</package>
+	<!-- 
+	<include file="struts-upload.xml"></include>
+	 -->
+
+</struts>

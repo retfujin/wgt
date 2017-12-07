@@ -1,0 +1,59 @@
+/* CSS Document */
+body{
+	font-family:'微软雅黑';	
+	background:#f7f7f7;	
+}
+.add{
+	width:auto;
+}
+.add_area{
+	border:1px solid #B8DEFD;
+	border-radius:3px;	
+	-moz-border-radius:3px;
+	height:auto;
+	padding:2px;	
+}
+.add_name{
+	width:100%;
+	height:29px;
+	background:url(/images/table_name.png) repeat-x 0 center;	
+}
+.add_name p{
+	text-align:left;
+	font-size:15px;
+	color:#181717;
+	padding-left:15px;
+	line-height:29px;
+}
+.add_table{
+	border:1px solid #8FB9D0;	
+	font-size:12px;
+	background:#F6FBFF;
+	text-align:left;
+}
+.add_table input{
+	height:25px;
+	border:1px solid d#adada;
+	margin:0 5px;
+}
+.add_table td{
+	border-right:1px solid #DBDBDB;
+	border-bottom:1px solid #DBDBDB;
+}
+.footer{
+	text-align:right;	
+}
+.footer td{
+	border:0 none;	
+	background:url(/images/add_footer.png) repeat-x 0 center;
+	width:100%;
+	height:39px;
+}
+.reset,.save{
+	background:url(/images/button2.png) no-repeat 0 center;
+	border:0 none !importment;
+	width:54px;
+	height:24px;	
+	cursor:pointer;
+	text-align:center;
+}

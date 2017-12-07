@@ -1,0 +1,275 @@
+/* ---- WinXP �ļ��г���������ʽ ---- */
+.WINXP {
+	margin: 0px;/* �߾� */
+	padding: 12px;
+	width: 155px;/* ��� */;
+	background-color: #038EDB;/* ���� */;	
+	white-space: nowrap;
+}
+.WINXP * {
+	margin: 0px;
+	padding: 0px;
+}
+.WINXP ul {
+	list-style-type: none;
+}
+.WINXP div {
+	padding-left: 0px;/* ���� */	
+}
+.WINXP img {
+	vertical-align: middle;
+}
+.WINXP a {
+	margin-left: 4px;
+	cursor:pointer;
+	font-size: 12px;/* �ֺ� */;
+	line-height: 18px;/* �о� */
+	color: #215dc6;
+	text-decoration: none;
+}
+.WINXP a:hover {
+	color: #428eff;
+	text-decoration: underline;
+}
+.WINXP a.ACTIVE {
+	color: #ff0000;
+}
+/* ---- MT_L0 ---- */
+.WINXP .MT_L0_BODY {
+	padding-left: 0px;
+}
+.WINXP .MT_L0_ITEM {
+	margin-top: 12px;
+	padding: 4px 4px 3px 8px;
+	height: 18px;
+	line-height: 18px;	
+	font-size: 13px;
+	font-weight: bold;
+	background: url('../images/WINXP/_MT_L0.gif') no-repeat;
+}
+.WINXP .MT_L0_ITEM img {
+	float: right;
+}
+.WINXP .MT_L0_ITEM a {
+	color: #215dc6;
+}
+.WINXP .MT_L0_ITEM a:hover {
+	color: #428eff;
+}
+/* ---- MT_L1 ---- */
+.WINXP .MT_L1 {
+	padding-left: 0px;
+}
+.WINXP .MT_L1_BODY {
+	padding: 8px 0px 8px 12px;
+	background-color: #d6dff7;
+	border-right: 1px #FFFFFF solid;
+	border-bottom: 1px #FFFFFF solid;
+	border-left: 1px #FFFFFF solid;
+}
+/* ---- WinXP �ļ��г���������ʽ ---- */
+
+/* ---- MSDN Ŀ¼����ʽ ---- */
+.MSDN {
+	margin: 0px 0px 0px 13px;/* �߾� */
+	padding: 8px;
+	width: 166px;/* ��� */;
+	background-color: #eeeeee;/* ���� */;
+	border: 1px gray solid;
+	white-space: nowrap;
+}
+.MSDN * {
+	margin: 0px;
+	padding: 0px;
+}
+.MSDN ul {
+	list-style-type: none;
+}
+.MSDN li {
+	margin-top: 1px !important;/* Firefox���� */
+	margin-top: 2px;/* IE6���� */
+}
+.MSDN div {
+	padding-left: 20px;/* ���� */	
+}
+.MSDN img {
+	vertical-align: middle;
+}
+.MSDN a {
+	margin-left: 2px;
+	padding: 1px 2px 0px 2px;
+	cursor: pointer;
+	color: #000000;
+	font-size: 12px;/* �ֺ� */
+	line-height: 12px;/* �о� */
+	text-decoration: none;
+	border: 1px #f1f1f1 solid;
+}
+.MSDN a:hover {
+	border: 1px #999999 solid;
+	background-color: #cccccc;
+}
+.MSDN a.ACTIVE {
+	color: #ffffff;	
+	border: 1px #999999 solid;
+	background-color: #cccccc;
+}
+.MSDN a.NONE {
+	color: #888888;
+}
+/* ---- MT_L0 ---- */
+.MSDN .MT_L0 {
+	padding-left: 0px;
+}
+/* ---- MSDN Ŀ¼����ʽ ---- */
+
+/* ---- EC21 Ŀ¼����ʽ ---- */
+.EC21 {
+	margin: 0px 0px 0px 0px;/* �߾� */
+	padding: 0px;
+	width: 154px;/* ��� */;
+	background-color: #eef4f5;/* ���� */;
+	white-space: nowrap;
+}
+.EC21 * {
+	margin: 0px;
+	padding: 0px;
+}
+.EC21 ul {
+	list-style-type: none;
+}
+.EC21 div {
+	padding-left: 10px;/* ���� */	
+}
+.EC21 img {
+	vertical-align: middle;
+}
+.EC21 a {
+	margin-left: 4px;
+	cursor: pointer;
+	font-size: 12px;/* �ֺ� */
+	line-height: 14px;/* �о� */
+	color: #215dc6;
+	text-decoration: none;
+}
+.EC21 a:hover {
+	color: #428eff;
+}
+.EC21 a.ACTIVE {
+	color:#ff0000;
+}
+.EC21 a.NONE {
+	color:#888888;
+}
+/* ---- MT_L0 ---- */
+.EC21 .MT_L0_HEADER {
+	height: 3px;
+	font-size: 3px;/* IE6���� */
+	background: url('../images/EC21/_MT_L0_HEADER.gif') no-repeat;
+}
+.EC21 .MT_L0_BODY {
+	padding: 0px 0px 0px 0px;
+/*	border-left: 1px #75a3ed solid;
+	border-right: 1px #75a3ed solid;
+*/
+}
+.EC21 .MT_L0_FOOTER {
+	height: 0px;
+	font-size: 6px;/* IE6���� */
+/*	background: url('../images/EC21/_MT_L0_FOOTER.gif') no-repeat;
+*/
+}
+.EC21 .MT_L0_ITEM {
+	padding: 3px 0px 3px 5px;
+}
+.EC21 .MT_L0_ITEM a {
+	font-size:13px;
+	font-weight: bold;
+	color: #000000;
+}
+.EC21 .MT_L0_ITEM a:hover {
+	color: #428eff;
+}
+.EC21 .MT_L0_ITEM a.ACTIVE {
+	color: #ff0000;
+}
+/* ---- MT_L1 ---- */
+.EC21 .MT_L1 {
+	padding-left: 0px;
+}
+.EC21 .MT_L1_HEADER {
+	height: 3px;
+	font-size: 3px;/* IE6���� */
+	background-position:right;
+	background: url('../images/EC21/_MT_L1_HEADER.gif') no-repeat;
+}
+.EC21 .MT_L1_BODY {
+	padding-top: 4px;
+	padding-left: 4px;
+	border-left: 1px #75a3ed solid;
+	border-right: 1px #75a3ed solid;
+	background-color: #FFFFFF;
+}
+.EC21 .MT_L1_FOOTER {
+	height: 0px;
+	font-size: 4px;/* IE6���� */
+	background-position:right;
+	background: url('../images/EC21/_MT_L1_FOOTER.gif') no-repeat;
+}
+/* ---- EC21 Ŀ¼����ʽ ---- */
+
+/* ---- CSDN Ŀ¼����ʽ ---- */
+.CSDN {
+	margin: 0px 0px 0px 5px;/* �߾� */
+	padding: 8px;
+	width: 150px;/* ��� */;
+	/*background-color: #f1f1f1;/* ���� */;
+	/*border: 1px gray solid;*/
+	white-space: nowrap;
+}
+.CSDN * {
+	margin: 0px;
+	padding: 0px;
+}
+.CSDN ul {
+	list-style-type: none;	
+}
+.CSDN div {
+	padding-left: 20px;
+	background-image: url('../images/CSDN/_UL_LINE.gif');
+	background-repeat: repeat-y;
+}
+.CSDN div.LAST {
+	background-image: none;
+}
+.CSDN img {
+	vertical-align: middle;
+}
+.CSDN a {
+	margin-left: 2px;
+	padding: 1px 2px 0px 2px;
+	cursor: pointer;
+	color: #000000;
+	font-size: 12px;/* �ֺ� */
+	line-height: 12px;/* �о� */
+	text-decoration: none;
+	border: 1px #f1f1f1 solid;
+}
+.CSDN a:hover {
+	border: 1px #999999 solid;
+	background-color: #cccccc;
+}
+.CSDN a.ACTIVE {
+	color: #ffffff;	
+	border: 1px #999999 solid;
+	background-color: #cccccc;
+}
+.CSDN a.NONE {
+	color: #888888;
+}
+/* ---- MT_L0 ---- */
+.CSDN .MT_L0_BODY {
+	padding-left: 0px;
+	background-image: none;
+}
+/* ---- CSDN Ŀ¼����ʽ ---- */

@@ -1,0 +1,22 @@
+<html>
+<SCRIPT language=javascript>
+function switchbar(){
+if (switchPoint.innerText==3){
+switchPoint.innerText=4
+document.all("leftFrame").style.display="none"
+}else{
+switchPoint.innerText=3
+document.all("leftFrame").style.display=""
+}}
+</SCRIPT>
+<body>
+<TABLE height="100%" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+        <TR>
+          <TD bgColor="#4397c5"  onclick=switchbar()><FONT
+            style="FONT-SIZE: 9pt; CURSOR: hand; COLOR: white; FONT-FAMILY: Webdings"><SPAN
+            id=switchPoint>3</SPAN> </FONT></TR>
+</TBODY>
+</TABLE>
+</body>
+</html>

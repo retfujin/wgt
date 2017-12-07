@@ -1,0 +1,51 @@
+.#mask {
+  visibility: hidden;
+  background-color: #cccccc;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  background-image: none;
+  filter:alpha(opacity: 50); 
+ 
+}
+ 
+.#dialog
+{
+ visibility: hidden;
+ background-color: #f7fcfe;
+ z-index: 100;
+ width: 300px;
+ position: absolute;
+ height: 10%;
+ 
+}
+
+.dgtitle
+{
+ width: 200px;
+ height: 18px;
+ font-size: 11pt;
+ color: #3333ff;
+ background-color: #eef2f6;
+}
+
+.dgfooter
+{
+ height: 32px;
+ font-size: 11pt;
+ background-color: #eef2f6;
+}
+.formButton 
+{
+   background-color:    #6699cc;
+   padding:          2px 4px 3px 4px;
+   color:             #000000;
+   font-size:         8pt;
+   font-family:      tahoma;
+   height:            17px;
+   filter:          progid:DXImageTransform.Microsoft.Gradient(GradientType=0,
+             StartColorStr=#B4C5DF, EndColorStr=#91A9D0);
+   border-width:       0px;
+   cursor: hand;
+}
+

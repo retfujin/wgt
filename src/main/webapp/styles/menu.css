@@ -1,0 +1,75 @@
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;} 
+ol,ul{list-style:none;font-family:'微软雅黑';}  
+img{border:none;}
+a{text-decoration:none;}
+.fl{
+	float:left;
+	display:inline;	
+}
+.fr{
+	float:right;
+	display:inline;	
+}
+.clear{
+	clear:both;	
+}
+li{
+	list-style-type:none;	
+}
+.menu{
+	text-align:center;	
+	line-height:35px;
+	width:210px;
+}
+.menu ul li{
+	display:block;
+	width:210px;
+	line-height:35px;
+	list-style:none;
+	overflow:visible;
+}
+.menu ul li.menu_home{
+	border-bottom:1px solid #C8C7C6;	
+}
+.menu ul li a{
+	display:block;
+	height:35px;
+	width:210px;
+	font-size:15px;
+	color:#124776;
+	outline:none;
+	background:#D6E3F3 url(/images/menu_icon.png) no-repeat 45px center;
+}
+.menu ul li ul {
+	display:none; 
+	margin-top:-4px;
+}
+.menu ul li ul li {
+	display:block;
+	background:none;
+	font-size:12px;
+	list-style:circle;
+	color:#124776;;
+	padding-left:1px;
+}
+.menu ul li ul li a{
+	background:none;
+	font-size:14px;
+	height:25px;
+	line-height:25px;
+	color:#124776;;
+	padding-left:0px; 
+}
+.menu ul li ul li a:hover{
+	color:#f00;	
+}
+.menu_top{
+	background:url(/images/menu_top.png) no-repeat 0 0;
+	width:211px;
+	height:49px;	
+	text-align:center;
+	line-height:49px;
+	color:#124876;
+	font-size:18px;
+}

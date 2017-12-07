@@ -1,0 +1,42 @@
+/*表格样式*/
+.table_border {
+	border-top: 0px solid #999999;
+	border-right: 0px solid #999999;
+	border-bottom: 0px solid #999999;
+	border-left: 1px solid #999999;
+}
+/*表头样式*/
+.tdh {
+	background-image: url(table_bg.gif);
+	border-top: 1px solid #999999;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	border-left: 0px solid #999999;
+}
+/*表格主体样式*/
+.td_border {
+	text-align:center;
+	border-top: 0px solid;
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+	border-left: 0px solid;
+}
+/*输入框样式*/
+.con_input_con {
+	border: 1px solid #7B9EBD;
+    font-size: 12px;
+}
+/*按钮样式*/
+.con_button {
+	BORDER-RIGHT: #2C59AA 1px solid;PADDING-RIGHT:2px;BORDER-TOP: #2C59AA 1px solid;
+	PADDING-LEFT: 2px;FONT-SIZE: 12px;FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, 
+        StartColorStr=#ffffff, EndColorStr=#D7E7FA); BORDER-LEFT: 1px solid #2C59AA;CURSOR: hand;
+	COLOR: black;PADDING-TOP: 1px;BORDER-BOTTOM: #2C59AA 1px solid;	height: 18px;
+}
+/*页面字体样式*/
+.body,tr,td{
+	font-size:9pt;
+}
+/*
+var InputText="style='font-weight: bold; color: #000000; background-color: #C0C0C0; text-align: center' size=5  class=tditem onmouseover=style.backgroundColor='red' onclick=style.backgroundColor='dodgerblue' onmouseout=style.backgroundColor='silver' style='border-style:inset;border-width:1'>"
+*/

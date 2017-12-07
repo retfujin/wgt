@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="GBK"?>
+<config>
+  <CustomSMS>
+    <orgAddr>
+      <meterNums>2</meterNums>
+      
+      <!-- 信谊物业          注意改下面的serviceId-->
+      <prefixion>106573061157</prefixion>
+      <SPNumbers>106573061157</SPNumbers>      
+       
+      <edition>SM,MMS,USSD,WAP,OPERATION</edition>
+    </orgAddr>
+    <database>
+      <hwdbconfig>
+        <url>jdbc:microsoft:sqlserver://127.0.0.1:1433;User=CustomSMS;Password=SqlMsde@InfoxEie2000;databasename=DB_CustomSMS;SelectMethod=cursor</url>
+        <driver>com.microsoft.jdbc.sqlserver.SQLServerDriver</driver>
+        <user>CustomSMS</user>
+        <password>SqlMsde@InfoxEie2000</password>
+        <max-connection>30</max-connection>
+        <max-free-connection>30</max-free-connection>
+        <watch-interval>2000</watch-interval>
+        <test-sql>select top 1  operator_id from tbl_operator</test-sql>
+        <connection-timeout>5</connection-timeout>
+        <login-timeout>10</login-timeout>
+        <name>CustomSMS_connection_pool</name>
+      </hwdbconfig>
+      <config>
+        <usingdatabase>hw</usingdatabase>
+        <datasource>jdbc/CustomSMS</datasource>
+        <databseName>DB_CustomSMS</databseName>
+      </config>
+      <sql>
+        <mms>
+          <insertTbl_MMSingleSend>insert into tbl_MMSingleSend(VASID, ServiceCode, SenderAddress, ChargedPartyID, SendTo, SubTime, SendTime, NeedReport, Subject, CreatorID, ForeignID) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</insertTbl_MMSingleSend>
+          <selectTbl_MMSingleSendMMSID>select ForeignID from tbl_MMSingleSend where MMSID = ?</selectTbl_MMSingleSendMMSID>
+          <selectTbl_MMSingleSendForeignID>select MMSID from tbl_MMSingleSend where ForeignID = ?</selectTbl_MMSingleSendForeignID>
+          <deleteTbl_MMSingleSend>delete tbl_MMSingleSend where MMSID = ?</deleteTbl_MMSingleSend>
+          <insertTbl_MMSingleSendContent>insert into tbl_MMSingleSendContent(ForeignID, Sequence, MMSContent) values(?, ?, ?)</insertTbl_MMSingleSendContent>
+          <selectTbl_MMSingleSendContent>select MMSContent from tbl_MMSingleSendContent where ForeignID = ?</selectTbl_MMSingleSendContent>
+          <deleteTbl_MMSingleSendContent>delete tbl_MMSingleSendContent from tbl_MMSingleSendContent where ForeignID = ?</deleteTbl_MMSingleSendContent>
+          <insertTbl_MMMutiSend>insert into tbl_MMMutiSend(VASID, ServiceCode, SenderAddress, ChargedPartyID, SubTime, SendTime, NeedReport, Subject, CreatorID, ForeignID) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)</insertTbl_MMMutiSend>
+          <deleteTbl_MMMutiSend>delete tbl_MMMutiSend where MMSID = ?</deleteTbl_MMMutiSend>
+          <insertTbl_MMMutiSendDestFile>insert into tbl_MMMutiSendDestFile(ForeignID, DestAdrFile, Alias) values(?, ?, ?)</insertTbl_MMMutiSendDestFile>
+          <selectTbl_MMMutiSendDestFile>select * from tbl_MMMutiSendDestFile where ForeignID = ?</selectTbl_MMMutiSendDestFile>
+          <deleteTbl_MMMutiSendDestFile>delete tbl_MMMutiSendDestFile where ForeignID = ? and DestAdrFile = ?</deleteTbl_MMMutiSendDestFile>
+          <insertTbl_MMMutiSendContent>insert into tbl_MMMutiSendContent(ForeignID, Sequence, MMSContent) values(?, ?, ?)</insertTbl_MMMutiSendContent>
+          <deleteTbl_MMMutiSendContent>delete tbl_MMMutiSendContent where ForeignID = ?</deleteTbl_MMMutiSendContent>
+          <selectTbl_MMMutiSendContent>select MMSContent from tbl_MMMutiSendContent where ForeignID = ?</selectTbl_MMMutiSendContent>
+          <selectTbl_MMResult>select * from tbl_MMResult-? where CreatorID = ?</selectTbl_MMResult>
+          <selectTbl_ReceiveMMSWhereSendTo>select mms.*,mn.MemberName
+from tbl_receiveMMS  mms LEFT OUTER JOIN tbl_Member mn on(mms.senderAddress = mn.MemberMobile)
+where mms.sendto=? and  mms.Reserve1 = ?</selectTbl_ReceiveMMSWhereSendTo>
+          <selectTbl_ReceiveMMSWhereSenderAddress>select mms.*,mn.MemberName
+from tbl_receiveMMS  mms LEFT OUTER JOIN tbl_Member mn on(mms.senderAddress = mn.MemberMobile)
+where mms.sendto=? and mms.SenderAddress like ? and  mms.Reserve1 = ?</selectTbl_ReceiveMMSWhereSenderAddress>
+          <updateTbl_ReceiveMMS>update tbl_ReceiveMMS set Reserve1 = ? where MMSID = ?</updateTbl_ReceiveMMS>
+          <deleteTbl_ReceiveMMS>delete tbl_ReceiveMMS where MMSID = ?</deleteTbl_ReceiveMMS>
+          <deleteTbl_ReceiveMMSAll>delete tbl_ReceiveMMS where SendTo = ? and Reserve1 = ?</deleteTbl_ReceiveMMSAll>
+          <selectTbl_ReceiveMMSContent>select * from tbl_ReceiveMMSContent where MMSID = ? Order by Sequence</selectTbl_ReceiveMMSContent>
+          <deleteTbl_ReceiveMMSContent>delete tbl_ReceiveMMSContent where MMSID = ?</deleteTbl_ReceiveMMSContent>
+          <layout>
+            <routWidth>200</routWidth>
+            <routHeight>300</routHeight>
+            <imgWidth>200</imgWidth>
+            <imgHeight>150</imgHeight>
+            <imgLeft>0</imgLeft>
+            <imgTopUp>0</imgTopUp>
+            <imgTopDown>150</imgTopDown>
+            <txtWidth>200</txtWidth>
+            <txtHeight>150</txtHeight>
+            <txtLeft>0</txtLeft>
+            <txtTopUp>0</txtTopUp>
+            <txtTopDown>150</txtTopDown>
+            <mmsSendEncode>utf-8</mmsSendEncode>
+          </layout>
+        </mms>
+        <mmmanagersql>
+          <pictypepagesql>select ID,UserID,PicTypeID,PicTypeName,OprTime from tbl_PicTypeManager</pictypepagesql>
+          <pictypeupdate>update tbl_PicTypeManager set PicTypeName=?,OprTime=getDate() where ID = ?</pictypeupdate>
+          <pictypedelete>delete from tbl_PicTypeManager where ID = ?</pictypedelete>
+          <pictypedeletepictypeid>delete from tbl_PicTypeManager where UserID= ? and PicTypeID = ?</pictypedeletepictypeid>
+          <pictypesave>insert into tbl_PicTypeManager(UserID,PicTypeID,PicTypeName,OprTime)values(?,?,?,getDate())</pictypesave>
+          <picmanagersql>select PicID,PicName,PicNewName,PicTypeID,HolderPeople,UpPeople,UpTime,PicByname from tbl_PicManager</picmanagersql>
+          <picmanagerdltbyholderpeoplepictypeid>delete from tbl_PicManager where HolderPeople=? and PicTypeID=?</picmanagerdltbyholderpeoplepictypeid>
+          <musictypepagesql>select ID,UserID,MusicTypeID,MusicTypeName,OprTime from tbl_MusicTypeManager</musictypepagesql>
+          <musictypesave>insert into tbl_MusicTypeManager(UserID,MusicTypeID,MusicTypeName,OprTime)values(?,?,?,getDate())</musictypesave>
+          <musictypeupdate>update tbl_MusicTypeManager set MusicTypeName=?,OprTime=getDate() where ID = ?</musictypeupdate>
+          <musictypedelete>delete from tbl_MusicTypeManager where ID = ?</musictypedelete>
+          <musicmanagersql>select MusicID,MusicName,MusicNewName,MusicTypeID,HolderPeople,UpPeople,UpTime,MusicByname from tbl_MusicManager</musicmanagersql>
+          <musicmanagerdltbyholderpeoplemusictypeid>delete from tbl_MusicManager where HolderPeople=? and MusicTypeID=?</musicmanagerdltbyholderpeoplemusictypeid>
+          <musictypedeletepictypeid>delete from tbl_MusicTypeManager where UserID=? and MusicTypeID = ?</musictypedeletepictypeid>
+          <picsave>insert into tbl_PicManager (PicName,PicByname,PicTypeID,HolderPeople,UpPeople,UpTime,PicNewName)values(?,?,?,?,?,getDate(),?)</picsave>
+          <picupdate>update tbl_PicManager set PicNewName=?,PicTypeID=?,HolderPeople=?,UpTime=getDate() where PicID=?</picupdate>
+          <picdelete>delete from tbl_PicManager where PicID=?</picdelete>
+          <picalldelete>delete from tbl_PicManager</picalldelete>
+          <musicsave>insert into tbl_MusicManager (MusicName,MusicByname,MusicTypeID,HolderPeople,UpPeople,UpTime,MusicNewName)values(?,?,?,?,?,getDate(),?)</musicsave>
+          <musicdelete>delete from tbl_MusicManager where MusicID=?</musicdelete>
+          <musicupdate>update tbl_MusicManager set MusicNewName=?,MusicTypeID=?,HolderPeople=?,UpTime=getDate() where MusicID=?</musicupdate>
+          <smCycleSave>insert into tbl_SMtoSend_Cycle(CreatorID,OrgAddr,DestAddr,DailyWorkType,BeginTime,EndTime,WaitTime,SM_Content,NeedReport,ServiceID,FeeType,FeeCode,WaitType,WaitContent,SMType,MessageID,DestAddType,TryTime,OldDestAddr,SubTime,symbol)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,getDate(),?)</smCycleSave>
+          <smCycledlt>delete from tbl_SMtoSend_Cycle where ID = ?</smCycledlt>
+          <smCycledltall>delete from tbl_SMtoSend_Cycle</smCycledltall>
+          <smCycleSQL>select CreatorID,OrgAddr,DestAddr,DailyWorkType,BeginTime,EndTime,WaitTime,SM_Content,NeedReport,ServiceID,FeeType,FeeCode,WaitType,WaitContent,SMType,MessageID,DestAddType,TryTime,OldDestAddr,SubTime,symbol from tbl_SMtoSend_Cycle</smCycleSQL>
+          <smCycleUpdate>update tbl_SMtoSend_Cycle set CreatorID=?,OrgAddr=?,DestAddr=?,DailyWorkType=?,BeginTime=?,EndTime=?,WaitTime=?,SM_Content=?,NeedReport=?,ServiceID=?,FeeType=?,FeeCode=?,WaitType=?,WaitContent=?,SMType=?,MessageID=?,DestAddType=?,TryTime=?,OldDestAddr=?,SubTime=getDate(),symbol=?,newTime=? where ID=?</smCycleUpdate>
+          <questionsave>insert into tbl_questions(CreatorID,Deliver_Report,Request_Reply,DestAddr,Question_Type,Option_Type,Question_Content,Options,Right_Anwser,SendTime,ID)values(?,?,?,?,?,?,?,?,?,?,?)</questionsave>
+          <questiondelete>delete from tbl_questions,tbl_answers where tbl_questions.ID = tbl_answers.QID and ID = ?</questiondelete>
+          <questiondeleteall>delete from tbl_questions where ID</questiondeleteall>
+          <answerdelete>delete from tbl_answers where ID = ?</answerdelete>
+          <answerdeleteall>delete from tbl_answers where QID</answerdeleteall>
+          <SMToSenddeleteall>delete from tbl_smsendtask where CAST(RIGHT(OrgAddr,4) AS int)</SMToSenddeleteall>
+          <answerdelete_question>delete from tbl_answers where QID = ?</answerdelete_question>
+        </mmmanagersql>
+        <forbiddenword>
+          <save>insert into tbl_ForbiddenWord(ForbiddenWord) values(?)</save>
+          <getAllWords>select * from tbl_ForbiddenWord</getAllWords>
+          <getAllMobiles>select * from tbl_ForbiddenMobile</getAllMobiles>
+          <getAllMobiles1>select * from tbl_AccessbleMobile</getAllMobiles1>
+          <delete>delete from tbl_ForbiddenWord where ID = ?</delete>
+          <deleteMobile>delete from tbl_ForbiddenMobile where ID = ?</deleteMobile>
+          <deleteMobile1>delete from tbl_AccessbleMobile where ID = ?</deleteMobile1>
+          <getLastId>select top 1 * from tbl_ForbiddenWord  order by id  desc</getLastId>
+          <getLastMobileId>select top 1 * from tbl_ForbiddenMobile  order by id  desc</getLastMobileId>
+          <getForbiddenWordSql>select ForbiddenWord,id from tbl_ForbiddenWord</getForbiddenWordSql>
+          <getForbiddenMobileSql>select ForbiddenMobile,id from tbl_ForbiddenMobile</getForbiddenMobileSql>
+          <getAccessbleMobileSql>select AccessbleMobile,id from tbl_AccessbleMobile</getAccessbleMobileSql>
+        </forbiddenword>
+        <operator>
+          <selectTblOperator>select maxCount,limitType from tbl_Operator where operator_id=?</selectTblOperator>
+          <save>INSERT INTO tbl_Operator(Operator_ID, Operator_Name, Operator_Code, Password, OperatorType, roleId, LimitType, MaxCount, Modified) VALUES(?,?,?,?,?,?,?,?,?)</save>
+          <getAllOperators>select * from tbl_Operator</getAllOperators>
+          <modifypassword>update tbl_Operator set Password = ? where Operator_ID = ?</modifypassword>
+          <delete>delete from tbl_Operator where Operator_ID = ?</delete>
+          <update>update tbl_Operator set Operator_Name=?, Operator_Code=? ,OperatorType=?,roleId=?,limitType=?,maxCount=?,Modified=? where Operator_ID = ?</update>
+          <geRight>select * from tbl_Operator where Operator_Code = ?</geRight>
+          <isDeleted>select count(*) from view_destAddrFile where UpOperator_ID = ?</isDeleted>
+          <getOperatorsSql>select Operator_ID, Operator_Name, Operator_Code, Password, OperatorType, roleId, LimitType, MaxCount, Modified,address,department,logincount,loginTime from tbl_Operator</getOperatorsSql>
+        </operator>
+        <!-- 应用接入信息管理 -->
+        <appAccessOperator>
+          <!-- 从界面上查询数据 -->
+          <querySql>select id, itCapability, ctCapability, accessTime, description from tbl_AppAccessInfo</querySql>
+        </appAccessOperator>
+        <upfile>
+          <save>insert into tbl_UpFile(Alias,FileName,UpOperator_ID,Counter) values(?,?,?,?)</save>
+          <getAllUpFiles>select * from tbl_UpFile</getAllUpFiles>
+          <delete>delete from tbl_UpFile where FileName = ?</delete>
+          <isDeleted>select count(*) from tbl_DestAddrFile where UpFileName = ?</isDeleted>
+        </upfile>
+        <smToSend>
+          <updateSysConfig>update tbl_sysconfig set value=? where name = 'AccessORForbidden'</updateSysConfig>
+          <insertTbl_MMSingleSendContent>insert into Tbl_SMSendTask(CreatorID,TaskName,SmSendedNum,
+                OperationType,SuboperationType,SendType,OrgAddr,DestAddr,
+                SM_Content,SendTime,NeedStateReport,ServiceID,FeeType,FeeCode,MsgID,SMType,MessageID,
+                DestAddrType,SubTime,TaskStatus,SendLevel,SendState,TryTimes,Count)
+                values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,getdate(),?,?,?,?,?)</insertTbl_MMSingleSendContent>
+          <save>insert into tbl_SMToSend(OrgAddr,DestAddr,SM_Content,SendTime,NeedStateReport,ServiceID,FeeType,FeeCode,CreatorID,TryTimes,SMType) values(?,?,?,?,?,?,?,?,?,?,?)</save>
+          <delete>delete from tbl_SMToSend where SM_ID=?</delete>
+          <deleteAll>delete from tbl_SMToSend where SM_ID in (?)</deleteAll>
+          <getMySMToSends>select * from tbl_SMToSend where OrgAddr=?</getMySMToSends>
+          <getSendType>select reserve1 from tbl_SMToSend where SM_ID=?</getSendType>
+        </smToSend>
+        <smToMultiSend>
+          <save>insert into tbl_SMToMultiSend(OrgAddr,SM_Content,SendTime,NeedStateReport,ServiceID,FeeType,FeeCode,CreatorID,Reserve2) values(?,?,?,?,?,?,?,?,?)</save>
+          <delete>delete from tbl_SMToMultiSend where SM_ID=?</delete>
+          <deleteAll>delete from tbl_SMToMultiSend where SM_ID in (?)</deleteAll>
+          <getMySMToMultiSends>select * from tbl_SMToMultiSend where OrgAddr=?</getMySMToMultiSends>
+          <getSendType>select reserve1 from tbl_SMToMultiSend where SM_ID=?</getSendType>
+          <getSmId>select max(SM_ID) from tbl_SMToMultiSend where OrgAddr=?</getSmId>
+          <getByMulSendID>select * from view_DestAddrFile where MulSendID=?</getByMulSendID>
+        </smToMultiSend>
+        <ppm>
+          <delete>delete from tbl_ppmtask where FileName=?</delete>
+          <deleteAll>delete from tbl_ppmtask where FileName in (?)</deleteAll>
+        </ppm>
+        <destAddrFile>
+          <save>insert into tbl_DestAddrFile (MulSendID,UpfileName)values(?,?)</save>
+        </destAddrFile>
+        <destAddrFile>
+          <getByMulSendID>select * from view_DestAddrFile where mulSendID=?</getByMulSendID>
+        </destAddrFile>
+        <groupMember>
+          <getMembersByOtherAll>select * from tbl_member where CreatorID= ? and MemberMobile not in( select  MemberMobile from tbl_GroupMemberRelation)</getMembersByOtherAll>
+          <getMembersByOtherPage>select * from tbl_member where CreatorID= ? and MemberMobile not in( select  MemberMobile   from tbl_GroupMemberRelation )</getMembersByOtherPage>
+          <getMembersByGroupIDPage>select *  from tbl_member where MemberMobile in(select  MemberMobile  from tbl_GroupMemberRelation  where groupID=?)</getMembersByGroupIDPage>
+          <getMembersByGroupIDPage1>select *  from tbl_member where (creatorId =? or creatorId='0000') and MemberMobile in(select  MemberMobile  from tbl_GroupMemberRelation  where groupID=?)</getMembersByGroupIDPage1>
+          <getMemebersByGroupIDAll>select *  from tbl_member where MemberMobile in(select  MemberMobile  from tbl_GroupMemberRelation  where groupID=?)</getMemebersByGroupIDAll>
+          <getMemebersByGroupIDAllOnNew>select *  from tbl_member where MemberMobile in(select  MemberMobile  from tbl_GroupMemberRelation  where groupID=?) and creatorid=?</getMemebersByGroupIDAllOnNew>
+          <getMemebersByGroupIDAllOn>select *  from tbl_member where MemberMobile in(select  MemberMobile  from tbl_GroupMemberRelation  where groupID=? and creatorid=?)</getMemebersByGroupIDAllOn>
+          <getMemberCountByGroupID>select count(*) from tbl_member where MemberMobile in( select  MemberMobile from tbl_GroupMemberRelation where GroupID=?)</getMemberCountByGroupID>
+          <getMemberCountByOtherAll>select count(*) from tbl_member where CreatorID= ? and MemberMobile not in( select MemberMobile from tbl_GroupMemberRelation )</getMemberCountByOtherAll>
+          <getMembersByMemberMobile>select * from tbl_Member where MemberMobile=?</getMembersByMemberMobile>
+          <getPageCount>select count(*) from tbl_Member where CreatorID=?</getPageCount>
+          <getMember>select * from tbl_member</getMember>
+        </groupMember>
+        <member>
+          <save>insert into tbl_member( MemberName,MemberSex,MemberBirthday,MemberCardNum,MemberMobile,MemberTelephone,MemberCompany,MemberDepartment,MemberJob,MemberOffice,MemberEmail,MemberMemo,CreatorID) values(?,?,?,?,?,?,?,?,?,?,?,?,?)</save>
+          <saveAnother>insert into tbl_groupmemberRelation values(?,?)</saveAnother>
+          <delete>delete from tbl_member where MemberMobile=? and CreatorId = ?</delete>
+        </member>
+        <regMain>select main_name,main_db,create_date,db.describe as descr,db.id,main_id from tbl_UserRegMain main left join tbl_userDb db on main.main_Db=db.id where db.describe is not null</regMain>
+        <regMainManager>select * from tbl_userRegSub</regMainManager>
+        <conns>select * from tbl_userDb order by id</conns>
+        <role>
+          <queryAll>select * from tbl_role</queryAll>
+          <getRoleByName>select * from tbl_role where name = ?</getRoleByName>
+          <getRoleById>select * from tbl_role where id = ?</getRoleById>
+          <insert>insert into tbl_role(name,desc) values(?,?)</insert>
+          <save>{?= call saverole(?,?,?,?)}</save>
+          <delete>{?= call deleterole(?)}</delete>
+          <getUserByRoleId>select count(*) from tbl_operator where roleId = ?</getUserByRoleId>
+          <deleteAll>delete from tbl_role where id in  (?)</deleteAll>
+          <deleteAllAuthority>delete from tbl_RoleJoinAuthority where roleid in (?)</deleteAllAuthority>
+        </role>
+        <authority>
+          <queryAll>select * from tbl_authority order by id asc</queryAll>
+          <queryAllByRoleId>select * from tbl_authority where id in (select authorityId from tbl_RoleJoinAuthority where roleId = ?)</queryAllByRoleId>
+          <insert>insert into tbl_RoleJoinAuthority(roleid,authorityid) values(?,?)</insert>
+        </authority>
+        <!--通信能力检查-->
+        <functionCheck>
+          <sms>
+            <!--短信能力检查开关-->
+            <smsCheck>0</smsCheck>
+            <!--短信能力检查语句。-->
+            <checkSMFunctionEnabled>select top 1 * from tbl_servicectrl where (communication = 'smsFlag') and (flag = 1)</checkSMFunctionEnabled>
+          </sms>
+          <mms>
+            <!--彩信能力检查开关-->
+            <mmsCheck>0</mmsCheck>
+            <!--彩信能力检查语句。-->
+            <checkMMSFunctionEnabled>select top 1 * from tbl_servicectrl where (communication = 'mmsFlag') and (flag = 1)</checkMMSFunctionEnabled>
+          </mms>
+        </functionCheck>
+      </sql>
+    </database>
+    <action>
+      <sign>actionid</sign>
+    </action>
+    <maxsize>
+      <textMaxLength>20</textMaxLength>
+      <operatorCode>20</operatorCode>
+      <password>20</password>
+      <perpage>13</perpage>
+      <perpage1>1000000</perpage1>
+    </maxsize>
+    <mmmanagerupfile>
+      <uppic>
+        <allowedFileType>jpeg,JPEG,gif,GIF</allowedFileType>
+        <savePath>C:\EIE\was\WEBROOT\UpPic\</savePath>
+        <allowedFileSize>100000</allowedFileSize>
+      </uppic>
+      <upmusic>
+        <allowedFileType>wma,WMA,amr,AMR,wav,WAV</allowedFileType>
+        <savePath>C:\EIE\was\WEBROOT\UpMusic\</savePath>
+        <allowedFileSize>100000</allowedFileSize>
+      </upmusic>
+      <writefile>C:\EIE\was\Upfile\smil\</writefile>
+      <mmsTxtContent>C:\EIE\was\Upfile\mmsTxt\</mmsTxtContent>
+      <!-- 彩信文本内容的最大个数 默认为5000个,建议不要超过5000个-->
+      <mmsTxtContentMaxLength>5000</mmsTxtContentMaxLength>
+      <!--彩信的总大小 最大只能够为100k,默认为100k-->
+      <mmsMaxMessageSize>100000</mmsMaxMessageSize>
+      <!--彩信收件箱中文本内容的编码格式配置项-->
+      <mmsReceiveEncode>UTF-8</mmsReceiveEncode>
+    </mmmanagerupfile>
+    <!--此处配置was模块的app.xml存放的路径,方便在页面中读取-->
+    <wasAppConfig>c:\eie\was\webroot\WEB-INF\app.xml</wasAppConfig>
+    <upfile>
+      <allowedFileType>txt,txT,tXt,tXT,Txt,TXt,TxT,TXT</allowedFileType>
+      <savePath>C:\EIE\WAS\Upfile\MultiSend\</savePath>
+      <saveTempPath>C:\EIE\was\Upfile\tempFile\</saveTempPath>
+      <allowedFileSize>10000000</allowedFileSize>
+    </upfile>
+    <mmsUpFile>
+      <port>2013</port>
+    </mmsUpFile>
+    <upMember>
+      <allowedFileType>txt,txT,tXt,tXT,Txt,TXt,TxT,TXT</allowedFileType>
+      <savePath>C:\EIE\was\Upfile\Member\</savePath>
+      <allowedFileSize>10000000</allowedFileSize>
+    </upMember>
+    <ppm>
+      <allowedFileType>txt,txT,tXt,tXT,Txt,TXt,TxT,TXT</allowedFileType>
+      <savePath>C:\EIE\was\Upfile\PPM\</savePath>
+      <allowedFileSize>30000000</allowedFileSize>
+    </ppm>
+    <cfgFile>
+      <savePath>C:\EIE\sps\</savePath>
+      <fileName>cfg.script</fileName>
+      <serviceFileName>service.script</serviceFileName>
+    </cfgFile>
+    <infoFile>
+      <fileName>EIEInfo.html</fileName>
+    </infoFile>
+    <eupServerConfigFile>C:\EIE\eup\app.xml</eupServerConfigFile>
+    <infoXSmsConfig>C:\EIE\Infox_ProAgent\config\SmsConfig.ini</infoXSmsConfig>
+    <eieServerConfigFile>C:\eie\sms\app.xml</eieServerConfigFile>
+    <eieScsConfigFile>C:\EIE\sps\spsconfig.xml</eieScsConfigFile>
+    <oracleTnsNames>C:\oracle\ora90\network\ADMIN\tnsnames.ora</oracleTnsNames>
+    <sybaseTnsNames>C:\sybase\ini\sql.ini</sybaseTnsNames>
+    <netip>C:\EIE\WAS\webroot\WEB-INF\net.ini</netip>
+    <manageConfig>C:\EIE\ProService_java\EIEService.ini</manageConfig>
+    <whetherShowMenu>1</whetherShowMenu>
+    <mobileUnion>1</mobileUnion>
+    <sendInterval>
+      <day>0</day>
+      <hour>0</hour>
+      <minus>15</minus>
+    </sendInterval>
+    <iFileSize>40000</iFileSize>
+    <iPageSize>1000</iPageSize>
+    <sms>
+      <smsReport>0</smsReport>
+      <smsRoutineReport>9999</smsRoutineReport>
+      <createid>0000</createid>
+      <smSendedNum>0</smSendedNum>
+      <operationType>WAS</operationType>
+      <suboperationType>66</suboperationType>
+      <needStateReport>0</needStateReport>
+      <SMType>0</SMType>
+      <messageID>0</messageID>
+      <destAddrType>0</destAddrType>
+      <taskStatus>0</taskStatus>
+      <sendLevel>0</sendLevel>
+      <sendState>0</sendState>
+      <tryTimes>3</tryTimes>
+      <smsFee>
+      <!-- 信谊物业 -->
+        <serviceId>MAH6910101</serviceId>
+        
+        
+        <feeType>01</feeType>
+        <feeCode>0</feeCode>
+      </smsFee>
+    </sms>
+    <kjava>
+      <KjavaReceived>
+        <CustomXmlCode>GB2312</CustomXmlCode>
+      </KjavaReceived>
+    </kjava>
+    <mms>
+      <mmsReport>0</mmsReport>
+      <mmsFee>
+        <serviceCode>001</serviceCode>
+        <mmFeeType>01</mmFeeType>
+        <mmFeeCode>10</mmFeeCode>
+      </mmsFee>
+      <mmsConfigFile>
+        <mmConfigFilePath>C:\EIE\mms\MMSConfig.xml</mmConfigFilePath>
+        <mm7ConfigFilePath>C:\EIE\mms\mm7Config.xml</mm7ConfigFilePath>
+      </mmsConfigFile>
+    </mms>
+    <wap>
+      <time>
+        <sleepingTime>3600</sleepingTime>
+        <delTime>2400</delTime>
+        <selectingTime>10</selectingTime>
+      </time>
+      <userAgent>
+        <UAhead>User-Agent</UAhead>
+        <defaultset>
+          <urlencoding>UTF-8</urlencoding>
+          <contentType>text/vnd.wap.wml;charset=UTF-8</contentType>
+          <xmlCharSet>UTF-8</xmlCharSet>
+          <useTrans>false</useTrans>
+        </defaultset>
+        <GB2312>
+          <contentType>text/vnd.wap.wml;charset=UTF-8</contentType>
+          <xmlCharSet>UTF-8</xmlCharSet>
+          <useTrans>false</useTrans>
+        </GB2312>
+      </userAgent>
+      <UAType name="P800">
+        <uaName>P800 simulator</uaName>
+        <urlencoding>UTF-8</urlencoding>
+        <wmlcharset>UTF-8</wmlcharset>
+      </UAType>
+      <UAType name="Jataayu">
+        <uaName>Jataayu WAP 2</uaName>
+        <urlencoding>UTF-8</urlencoding>
+        <wmlcharset>defaultset</wmlcharset>
+      </UAType>
+      <UAType name="Klondike/1.50">
+        <uaName>Klondike/1.50 (HTTP Win32)</uaName>
+        <urlencoding>UTF-8</urlencoding>
+        <wmlcharset>UTF-8</wmlcharset>
+      </UAType>
+      <UpImg>
+        <AllowedFileType>gif,png,jpg,wbmp</AllowedFileType>
+        <FilePath>c:\\Img</FilePath>
+      </UpImg>
+      <WAPServiceConfigSyetem>
+        <Delimiter>*</Delimiter>
+        <Return>-1</Return>
+        <PageUp>-2</PageUp>
+        <PageDown>-3</PageDown>
+        <Servlet>wap</Servlet>
+        <Website>www.eie.com</Website>
+        <ID>spid</ID>
+        <PSize>10</PSize>
+        <ImgSize>50</ImgSize>
+        <ImgHeight>80</ImgHeight>
+        <ImgWidth>90</ImgWidth>
+      </WAPServiceConfigSyetem>
+    </wap>
+    <log>
+      <recordconfig>1,2,3,4,5</recordconfig>
+    </log>
+    <daemontask>
+      <task>
+        <name>filebackup</name>
+        <mode>1</mode>
+        <enabled>false</enabled>
+        <starttime>2005-08-21 00:00:00.000</starttime>
+        <frequence>86400</frequence>
+        <taskclass>com.huawei.customsms.daemons.FileBackupTask</taskclass>
+        <BACKUP_PATH>d:/eie/backup/</BACKUP_PATH>
+        <SOURCE_PATH>c:/eie/</SOURCE_PATH>
+        <FILE_LIST>sms/config.xml,sms/app.xml,sms/sqlConf.xml,sms/AlertApp.xml,eup/app.xml,eup/db.xml,sps/spsconfig.xml,sps/service.xml,sps/system_service.xml,sps/cfg.script,WAS/WEBROOT/WEB-INF/app.xml,mms/mm7Config.xml,mms/ConnConfig.xml,mms/MMSConfig.xml,masagent/AgentConfig.xml,masagent/AlertConfig.xml,masagent/CommandMapping.xml,masagent/timer-config.xml</FILE_LIST>
+      </task>
+      <task>
+        <name>databasebackup</name>
+        <enabled>false</enabled>
+        <mode>1</mode>
+        <starttime>2006-05-26 23:59:59.000</starttime>
+        <frequence>1036800</frequence>
+        <taskclass>com.huawei.customsms.daemons.DBBackupTask</taskclass>
+        <BACKUP_PATH>d:/eie/backup/</BACKUP_PATH>
+      </task>
+      <task>
+        <name>smCycSendTask</name>
+        <enabled>false</enabled>
+        <mode>1</mode>
+        <starttime>2005-08-21 00:00:00.000</starttime>
+        <frequence>300</frequence>
+        <taskclass>com.huawei.customsms.beans.SmCycSendTask</taskclass>
+      </task>
+    </daemontask>
+    <compInfo>
+      <name>移动代理服务器</name>
+      <singal>0</singal>
+      <multi>0</multi>
+    </compInfo>
+    <SMReceiveMsg>
+      <TimeRefreshFlag>false</TimeRefreshFlag>
+      <RefreshTime>120000</RefreshTime>
+    </SMReceiveMsg>
+    <CommonDataConfigureFlag>false</CommonDataConfigureFlag>
+    <anotherConfig>
+      <webColour>0</webColour>
+      <logoconfig>./images/bannar_pic.jpg</logoconfig>
+      <allowedFileType>jpeg,JPEG,gif,GIF</allowedFileType>
+      <allowedFileSize>1000000</allowedFileSize>
+    </anotherConfig>
+    <routineTitleContent>
+      <dailyawokeTitleContent>【日程提醒】</dailyawokeTitleContent>
+      <meetingTitleContent>【会议通知】</meetingTitleContent>
+      <bulletinTitleContent>【公告发布】</bulletinTitleContent>
+    </routineTitleContent>
+    <wap-push-switch>true</wap-push-switch>
+    <notes>
+      <notesConfigFilepath>C:\EIE\sps\plugins\dmsConfig.xml</notesConfigFilepath>
+      <serviceFilepath>C:\EIE\sps\system_service.xml</serviceFilepath>
+    </notes>
+    <cleanTableSettings>
+      <tableToClean>
+        <tableName>tbl_UssdMsg</tableName>
+        <mode>1</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>10</limitNumber>
+        <timeColumn>UpdateTime</timeColumn>
+        <primaryKey>ID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_UssdMsg_history</tableName>
+        <mode>2</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>5</limitNumber>
+        <timeColumn>UpdateTime</timeColumn>
+        <primaryKey>ID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>KjavaReceived</tableName>
+        <mode>1</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>10</limitNumber>
+        <timeColumn>RequestTime</timeColumn>
+        <primaryKey>KID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>KjavaResult</tableName>
+        <mode>3</mode>
+        <limitDays>15</limitDays>
+        <limitNumber>1000</limitNumber>
+        <timeColumn>RequestTime</timeColumn>
+        <primaryKey>KID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_SMReceived</tableName>
+        <mode>2</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>10</limitNumber>
+        <timeColumn>RecvTime</timeColumn>
+        <primaryKey>SM_ID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_SMSendTask_Result</tableName>
+        <mode>2</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>2594</limitNumber>
+        <timeColumn>SendTime</timeColumn>
+        <primaryKey>ID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_WapMsg</tableName>
+        <mode>1</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>1000</limitNumber>
+        <timeColumn>UpdateTime</timeColumn>
+        <primaryKey>ID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_WapMsg_History</tableName>
+        <mode>3</mode>
+        <limitDays>30</limitDays>
+        <limitNumber>2000</limitNumber>
+        <timeColumn>SendTime</timeColumn>
+        <primaryKey>ID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_ReceiveMMS</tableName>
+        <mode>0</mode>
+        <limitDays>90</limitDays>
+        <limitNumber>3000</limitNumber>
+        <timeColumn>ReceiveTime</timeColumn>
+        <primaryKey>MMSID</primaryKey>
+      </tableToClean>
+      <tableToClean>
+        <tableName>tbl_ReceiveMMSContent</tableName>
+        <mode>0</mode>
+        <limitDays>90</limitDays>
+        <limitNumber>3000</limitNumber>
+        <timeColumn/>
+        <primaryKey>MMSID</primaryKey>
+      </tableToClean>
+    </cleanTableSettings>
+    <receviedOptionFlag>true</receviedOptionFlag>
+    <mmsmmsFee>
+      <mmFeeCode>10</mmFeeCode>
+    </mmsmmsFee>
+    <!--masagent的CommandMapping配置文件的对应路径-->
+    <masCommandMappingConfig>C:\EIE\masagent\CommandMapping.xml</masCommandMappingConfig>
+    <!--masagent的配置文件路径-->
+    <masAgentConfig>C:\EIE\masagent\AgentConfig.xml</masAgentConfig>
+    <MTMConnect>
+      <!--是否开启was模块的告警功能-->
+      <enable>false</enable>
+      <!-- MTM主机地址 -->
+      <host>127.0.0.1</host>
+      <!-- MTM主机端口号 -->
+      <port>30000</port>
+      <!-- 心跳信息发送间隔时间(单位：秒) -->
+      <heartbeat-interval>5</heartbeat-interval>
+      <!-- 连接中断时重连间隔时间(单位：秒)-->
+      <reconnect-interval>5</reconnect-interval>
+      <!-- 需要重连时，连续发出心跳而没有接收到响应的个数（单位：个)-->
+      <heartbeat-noresponseout>5</heartbeat-noresponseout>
+      <!-- 操作超时时间(单位：秒) -->
+      <transaction-timeout>10</transaction-timeout>
+      <!-- 模块标识，标识连接到MTM的各个模块，不能相互冲突 -->
+      <sender-id>MAS_WAS</sender-id>
+      <!-- 消息接收模块标识，用于MTM路由消息 -->
+      <receiver-id>MAS_Agent</receiver-id>
+      <!-- 登录用户名 -->
+      <user-name>MAS_WAS</user-name>
+      <!-- 登录密码 -->
+      <shared-secret>123456</shared-secret>
+      <!--是否属于调试状态,true表示属于调试状态，所有的消息被打印输出到屏幕，false表示不属于调试状态，所有的消息不被输出-->
+      <debug>false</debug>
+    </MTMConnect>
+    <userLoginLock>
+      <!--true:由系统自动解锁,false:由系统管理进行解锁-->
+      <enable>true</enable>
+      <!--锁定时间,在该时间范围内被锁定,超过该时间范围,系统进行自动解锁,单位为分钟,默认为30分钟-->
+      <lockTime>1</lockTime>
+      <!--锁定次数,在设定次数内,用户还可以继续登录,超过该数目,用户被锁定,默认为3次-->
+      <lockCount>10</lockCount>
+    </userLoginLock>
+    <!-- 配置手机号段
+    	 具体格式为: 号段:长度,号段长度   
+    	 含义:配置了手机号段之后,如果需要对该号段进行长度校验,需要配置该号段的号码长度为多少位,如果不配置长度,则默认为不对该		号段进行校验
+    	 例如:13:11,15:11,8613:13,+8613:14	
+    -->
+    <phoneregex>13:11,15:11,8613:13,8615,106,01</phoneregex>
+  </CustomSMS>
+</config>

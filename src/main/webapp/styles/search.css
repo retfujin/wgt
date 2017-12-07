@@ -1,0 +1,25 @@
+.search_form{
+	font-family:'Î¢ÈíÑÅºÚ';
+	font-size:14px;	
+	text-align:left;
+	margin:10px 0 10px 10px;
+}
+.search_form input.search_number,.search_form select{
+	width:130px;
+	height:23px;
+	line-height:23px;
+}
+.search_btn{
+	background:url(/images/button1.png)  no-repeat 0 center;
+	width:54px;
+	height:24px;
+	border:0 none;	
+	cursor:pointer;
+	font-size:13px;
+	color:#000;
+	font-family:'Î¢ÈíÑÅºÚ';
+	line-height:24px;
+}
+.search_form input,.search_form select{
+	margin:0 10px;	
+}
