@@ -30,10 +30,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.internal.CriteriaImpl;
+import org.hibernate.impl.CriteriaImpl;
 import org.hibernate.transform.ResultTransformer;
 import org.hibernate.transform.Transformers;
-import org.hibernate.type.StringType;
 import org.springframework.util.Assert;
 import com.acec.core.orm.Page;
 import com.acec.core.orm.PropertyFilter;
@@ -149,7 +148,7 @@ public class HibernateDao<T, PK extends Serializable> extends SimpleHibernateDao
 		
 		if(addScalar!=null&&!addScalar.isEmpty()){
 			for(String key :addScalar){
-				sq = sq.addScalar(key, StringType.INSTANCE );
+				sq = sq.addScalar(key, Hibernate.STRING );
 			}
 			
 		}
