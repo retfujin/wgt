@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
         <org-springframework.version>2.5.6</org-springframework.version>
-        <hibernate.version>3.3.2</hibernate.version>
+        <hibernate.version>3.3.2.GA</hibernate.version>
     </properties>
 
 
@@ -20,157 +20,24 @@
     <repositories>
 
         <repository>
+            <id>test</id>
+            <name>Java Repository</name>
+            <url>https://mvnrepository.com/artifact</url>
+        </repository>
+
+        <repository>
             <id>oschina-repos</id>
             <name>Oschina Releases</name>
             <url>http://maven.oschina.net/content/groups/public</url>
         </repository>
 
-        <repository>
-            <id>java-repos</id>
-            <name>Java Repository</name>
-            <url>http://download.java.net/maven/2/</url>
-        </repository>
 
-        <repository>
-            <id>springsource-repos</id>
-            <name>SpringSource Repository</name>
-            <url>http://repo.spring.io/release/</url>
-        </repository>
 
-        <repository>
-            <id>central-repos</id>
-            <name>Central Repository</name>
-            <url>http://repo.maven.apache.org/maven2</url>
-        </repository>
-
-        <repository>
-            <id>central-repos2</id>
-            <name>Central Repository 2</name>
-            <url>http://repo1.maven.org/maven2/</url>
-        </repository>
-
-        <repository>
-            <id>activiti-repos</id>
-            <name>Activiti Repository</name>
-            <url>https://maven.alfresco.com/nexus/content/groups/public</url>
-        </repository>
-
-        <repository>
-            <id>activiti-repos2</id>
-            <name>Activiti Repository 2</name>
-            <url>https://app.camunda.com/nexus/content/groups/public</url>
-        </repository>
-
-        <repository>
-            <id>autoserve-repos</id>
-            <name>AutoServe Repository</name>
-            <url>http://git.oschina.net/thinkgem/repos/raw/master</url>
-        </repository>
-
-        <repository>
-            <id>autoserve-repos2</id>
-            <name>AutoServe Repository 2</name>
-            <url>https://raw.github.com/thinkgem/repository/master</url>
-        </repository>
-
-        <repository>
-            <id>autoserve-repos3</id>
-            <name>AutoServe Repository 3</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo</url>
-        </repository>
-        <repository>
-            <id>autoserve-repos4</id>
-            <name>AutoServe Repository 4</name>
-            <url>http://maven.repository.paxle.net</url>
-        </repository>
-        <repository>
-            <id>autoserve-repos5</id>
-            <name>AutoServe Repository 5</name>
-            <url>http://dist.wso2.org/maven2</url>
-        </repository>
     </repositories>
 
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>4.3.11.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-            <version>2.3.14</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${org-springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${org-springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${org-springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>2.0.4</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.hibernate.common</groupId>
-            <artifactId>hibernate-commons-annotations</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-ehcache</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils-core</artifactId>
-            <version>1.8.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jxl</groupId>
-            <artifactId>jxl</artifactId>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jxl.jar</systemPath>
-        </dependency>
 
     </dependencies>
 
@@ -185,7 +52,7 @@
                     <target>1.6</target>
                     <encoding>UTF-8</encoding>
                     <compilerArguments>
-                        <verbose />
+                        <extdirs>src/main/webapp/WEB-INF/lib</extdirs>
                     </compilerArguments>
                 </configuration>
             </plugin>

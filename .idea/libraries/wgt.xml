@@ -1,19 +1,6 @@
 <component name="libraryTable">
-  <library name="Java EE 6-Java EE 6">
+  <library name="wgt">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/javax.annotation.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.ejb.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.persistence.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.resource.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.jms.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.transaction.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-    <excluded>
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/antlr-2.7.6.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aopalliance-1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/aspectjweaver-1.6.2.jar!/" />
@@ -95,6 +82,8 @@
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/tool.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/xml-apis-1.0.b2.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/xwork-2.1.2.jar!/" />
-    </excluded>
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
   </library>
 </component>
